@@ -4,7 +4,7 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 var GithubStrategy = require('passport-github').Strategy;
 var GoogleStrategy = require('passport-google').Strategy;
 var User = require('./user.js')
-var config = require('./oauth.js')
+var config = require('./config/oauth.js')
 
 // config
 module.exports = passport.use(new FacebookStrategy({

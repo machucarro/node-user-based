@@ -5,7 +5,7 @@ var routes = require('./routes');
 var path = require('path');
 var cons = require('consolidate');
 var swig = require('swig');
-var config = require('./oauth.js');
+var config = require('./config/oauth.js');
 var User = require('./user.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -54,66 +54,15 @@ passport.deserializeUser(function(id, done) {
     })
 });
 
-// routes
-app.get('/', routes.index);
-app.get('/ping', routes.ping);
-app.get('/account', ensureAuthenticated, function(req, res){
-  User.findById(req.session.passport.user, function(err, user) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.render('account', { user: user});
-    }
-  })
-})
-app.get('/auth/facebook',
-  passport.authenticate('facebook'),
-  function(req, res){
-  });
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/account');
-  });
-app.get('/auth/twitter',
-  passport.authenticate('twitter'),
-  function(req, res){
-  });
-app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/account');
-  });
-app.get('/auth/github',
-  passport.authenticate('github'),
-  function(req, res){
-  });
-app.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/account');
-  });
-app.get('/auth/google',
-  passport.authenticate('google'),
-  function(req, res){
-  });
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/account');
-  });
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
+routes(app,passport);
 
 // port
 app.listen(3000);
 
 // test authentication
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/');
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/');
 }
 
 module.exports = app
