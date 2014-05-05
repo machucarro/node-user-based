@@ -1,15 +1,11 @@
 // dependencies
-var fs = require('fs');
 var express = require('express');
 var routes = require('./routes');
-var path = require('path');
 var cons = require('consolidate');
 var swig = require('swig');
-var config = require('./config');
-var User = require('./user.js');
+var User = require('./app/models/User.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var auth = require('./authentication.js');
 
 // connect to the database
 mongoose.connect('mongodb://localhost:27017/userApp');
@@ -39,29 +35,9 @@ swig.init({
     allowErrors: true // allows errors to be thrown and caught by express instead of suppressed by Swig
 });
 
-
-// serialize and deserialize
-passport.serializeUser(function(user, done) {
-    console.log('serializeUser: ' + user._id)
-    done(null, user._id);
-});
-passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user){
-        console.log(user);
-        if(!err) done(null, user);
-        else done(err, null);
-    })
-});
-
 routes(app,passport);
 
 // port
 app.listen(3000);
 
-// test authentication
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.redirect('/');
-}
-
-module.exports = app
+module.exports = app;

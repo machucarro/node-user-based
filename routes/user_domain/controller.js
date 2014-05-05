@@ -1,5 +1,7 @@
-function init(app){
-    app.get('/account', ensureAuthenticated, function(req, res){
+module.exports.account = function(req, res){
+    if(!req.isAuthenticated()){
+        req.redirect("/auth/login");
+    } else{
         User.findById(req.session.passport.user, function(err, user) {
             if(err) {
                 console.log(err);
@@ -7,5 +9,5 @@ function init(app){
                 res.render('account', { user: user});
             }
         })
-    });
-}
+    }
+};

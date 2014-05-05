@@ -1,14 +1,8 @@
+var controller = require("./controller");
+module.exports = function (app, passport) {
+    app.get('/auth/login', controller.login.get);
 
-function init(app, passport) {
-    app.get('/auth/login', function(req, res) {
-        res.render('login.html', { message: req.flash('error') });
-    });
-
-    app.post('/auth/login', passport.authenticate('login', {
-        successRedirect : '/about',
-        failureRedirect : '/login',
-        failureFlash : true
-    }));
+    app.post('/auth/login', );
 
     app.get('/auth/signup', function(req, res) {
         res.render('signup.html', { message: req.flash('signuperror') });
