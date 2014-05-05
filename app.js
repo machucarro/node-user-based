@@ -17,9 +17,8 @@ mongoose.connect('mongodb://localhost:27017/userApp');
 var app = express();
 
 app.configure(function () {
-    app.engine('twig', cons.swig);
+    app.engine('html', cons.swig);
     app.set('views', __dirname + '/views');
-    app.set('view engine', 'twig');
     app.set('view options', { layout: false });
     app.use(express.logger());
     app.use(express.cookieParser());
