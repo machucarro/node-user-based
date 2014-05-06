@@ -1,4 +1,4 @@
-var User = require('./../models/User.js');
+var User = require('./../user_domain/User.js');
 exports.handle = function (accessToken, refreshToken, profile, done) {
     User.findOne({ oauthID: profile.id }, function (err, user) {
         if (err) {

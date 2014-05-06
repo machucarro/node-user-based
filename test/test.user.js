@@ -1,6 +1,6 @@
 var should = require("should");
 var mongoose = require('mongoose');
-var User = require("../app/models/User.js");
+var User = require("../app/user_domain/User.js");
 var db;
 
 describe('User', function() {

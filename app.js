@@ -3,7 +3,7 @@ var express = require('express');
 var routes = require('./routes');
 var cons = require('consolidate');
 var swig = require('swig');
-var User = require('./app/models/User.js');
+var User = require('./app/user_domain/User.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
