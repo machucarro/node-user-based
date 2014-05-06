@@ -6,7 +6,7 @@ module.exports = function AuthenticationController (passport) {
     /* == Traditional login and signup ===============================================*/
     this.login = {
         'get': function (req, res) {
-            res.render('login.html', { message: req.flash('error') });
+            res.render('login.html', { message: res.flash('error') });
         },
         'post': function (req, res) {
             passport.authenticate('login', {
