@@ -1,5 +1,6 @@
-var controller = require("./controller");
+var UserDomainController = require("./UserDomainController");
 
 module.exports = function (app){
-    app.get('/account', controller.account);
+    var controller = new UserDomainController();
+    app.get('/account', controller.account.get);
 }
