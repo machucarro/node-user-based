@@ -1,13 +1,10 @@
-module.exports = function PublicDomainController () {
-    if (!(this instanceof PublicDomainController)) {
-        return new PublicDomainController();
-    }
-    this.home = {
+module.exports = {
+    home : {
         'get': function (req, res) {
-            res.render("index.html");
+            res.render("public_domain/index");
         }
-    }
-    this.ping = {
+    },
+    ping: {
         'get': function (req, res) {
             res.end("pong!");
         }

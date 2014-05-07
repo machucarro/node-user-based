@@ -6,3 +6,5 @@
 *~
 node_modules
 *.out
+*.iml
+atlassian-ide-plugin.xml

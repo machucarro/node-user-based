@@ -1,42 +1,20 @@
-module.exports = function AuthenticationController (passport) {
-    if (!(this instanceof AuthenticationController)) {
-        return new AuthenticationController();
-    }
+module.exports = {
 
     /* == Traditional login and signup ===============================================*/
-    this.login = {
+    login: {
         'get': function (req, res) {
-            res.render('login.html', { message: res.flash('error') });
-        },
-        'post': function (req, res) {
-            passport.authenticate('login', {
-                successRedirect: '/about',
-                failureRedirect: '/login',
-                failureFlash: true
-            })
+            res.render('login.html', { message: res.flash('loginMessage') });
         }
-    };
+    },
 
-    this.signup = {
+    signup: {
         'get': function (req, res) {
-            res.render('signup.html', { message: req.flash('signuperror') });
-        },
-        'post': function (req, res) {
+            res.render('signup.html', { message: req.flash('signupMessage') });
         }
-    };
+    },
 
-    /* == Oauth Authentications ===============================================*/
-    this.oauth = {
-        'get': function (req, res) {
-        },
-        'callback': {
-            'get': function (req, res) {
-                res.redirect('/account');
-            }
-        }
-    };
     /*== Logout ================================================================*/
-    this.logout = {
+    logout: {
         'get': function (req, res) {
             req.logout();
             res.redirect('/');

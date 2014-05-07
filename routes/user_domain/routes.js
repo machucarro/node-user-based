@@ -1,6 +1,5 @@
-var UserDomainController = require("./UserDomainController");
+var controller = require("./userDomainController");
 
-module.exports = function (app){
-    var controller = new UserDomainController();
-    app.get('/account', controller.account.get);
+module.exports = function (app, passport){
+    app.get('/profile', passport.isLoggedIn, controller.profile.get);
 }

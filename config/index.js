@@ -1,2 +1,3 @@
 exports.db = require("./mongodb");
-exports.oauth = require("./oauth");
+exports.auth = require("./auth");
+exports.server = require("./server");
