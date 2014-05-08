@@ -1,24 +1,50 @@
-module.exports = {
+module.exports = function AuthenticationController (authenticationService){
 
-    /* == Traditional login and signup ===============================================*/
-    login: {
-        'get': function (req, res) {
-            res.render('login.html', { message: res.flash('loginMessage') });
-        }
-    },
+    if(!(this instanceof AuthenticationController)){
+        return new AuthenticationController(authenticationService);
+    }
 
-    signup: {
-        'get': function (req, res) {
-            res.render('signup.html', { message: req.flash('signupMessage') });
+    /* == GET pages ===============================================*/
+    this.get = {
+        'login': function (req, res) {
+            res.render('login', { message: res.flash('loginMessage') });
+        },
+        'signup': function (req, res) {
+            res.render('signup', { message: req.flash('signupMessage') });
         }
-    },
+    };
 
     /*== Logout ================================================================*/
-    logout: {
-        'get': function (req, res) {
+    this.logout = function(redirectOptions){
+        return function (req, res) {
             req.logout();
-            res.redirect('/');
+            res.redirect(redirectOptions.redirectUrl || '/');
+        };
+    };
+
+    /* Authentications ========================================================*/
+    this.auth = {
+        local: {
+            login: function(callbackOptions){authenticationService.authenticate('local-login', callbackOptions);},
+            signup: function(callbackOptions) {return controller.authenticate('local-signup', callbackOptions)},
+        } ,
+        facebook: {
+            authenticate: authenticationService.authenticate('facebook', { scope : 'email' }),
+            callback: function (callbackOptions) {return authenticationService.authenticate('facebook', callbackOptions);}
+        },
+        github: {
+            authenticate: authenticationService.authenticate('github'),
+            callback: function (callbackOptions) {return authenticationService.authenticate('github', callbackOptions);}
+        },
+        twitter: {
+            authenticate: authenticationService.authenticate('twitter'),
+            callback: function (callbackOptions) {return authenticationService.authenticate('twitter', callbackOptions);}
+        },
+        google: {
+            authenticate: authenticationService.authenticate('google', { scope : ['profile', 'email'] }),
+            callback: function (callbackOptions) {return authenticationService.authenticate('google', callbackOptions);}
         }
-    }
+    };
+
 };
 
