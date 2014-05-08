@@ -1,7 +1,8 @@
 var AuthenticationController = require("./authenticationController");
 module.exports = function (app, authenticationService) {
     var controller = new AuthenticationController(authenticationService);
-    /* == GET pages ===============================================*/
+
+/*=== GET pages ============================================================*/
     app.get('/auth/signup', controller.get.signup);
     app.get('/auth/login', controller.get.login);
 

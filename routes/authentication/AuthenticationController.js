@@ -45,6 +45,5 @@ module.exports = function AuthenticationController (authenticationService){
             callback: function (callbackOptions) {return authenticationService.authenticate('google', callbackOptions);}
         }
     };
-
 };
 
