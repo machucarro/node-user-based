@@ -41,7 +41,7 @@ app.configure(function () {
 
     app.engine('html', cons.swig);          // Assign the swig engine to render html files
     app.set('view engine', 'html');         // Set the html format as default view file format for render calls
-    app.set('views', __dirname + '/views'); // Set the folder where the app should search for the views
+    app.set('views', __dirname + '/view/templates'); // Set the folder where the app should search for the views
     app.set('view options', {
         layout: false
     });
@@ -55,7 +55,7 @@ app.configure(function () {
 
 // Extra config for the view engine =====================================================
 swig.init({
-    root: __dirname + '/views',
+    root: __dirname + '/view/templates',
     allowErrors: true // allows errors to be thrown and caught by express instead of suppressed by Swig
 });
 
