@@ -13,7 +13,7 @@
 
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <a href="/auth/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
@@ -57,7 +57,7 @@
         <!-- GITHUB INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
+                <h3 class="text-warning"><span class="fa fa-github"></span> Github</h3>
 
                 <!-- check if the user has this token (is the user authenticated with this social account) -->
                 {% if user.github.token %}
@@ -65,13 +65,13 @@
                     <strong>id</strong>: {{ user.github.id }}<br>
                     <strong>token</strong>: {{ user.github.token }}<br>
                     <strong>email</strong>: {{ user.github.email }}<br>
-                    <strong>name</strong>: {{ user.github.name}}
+                    <strong>name</strong>: {{ user.github.name}}<br>
                     <strong>user-name</strong>: {{ user.github.username}}
                 </p>
 
-                <a href="/unlink/google" class="btn btn-danger">Unlink</a>
+                <a href="/unlink/github" class="btn btn-warning">Unlink</a>
                 {% else %}
-                <a href="/connect/google" class="btn btn-danger">Connect Google</a>
+                <a href="/connect/github" class="btn btn-warning">Connect Github</a>
                 {% endif %}
 
             </div>
@@ -98,7 +98,6 @@
 
             </div>
         </div>
-
 
         <!-- FACEBOOK INFORMATION -->
         <div class="col-sm-6">

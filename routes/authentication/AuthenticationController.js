@@ -7,10 +7,10 @@ module.exports = function AuthenticationController (authenticationService){
     /* == GET pages ===============================================*/
     this.get = {
         'login': function (req, res) {
-            res.render('login', { message: res.flash('loginMessage') });
+            res.render('authentication/login', { message: req.flash('loginMessage') });
         },
         'signup': function (req, res) {
-            res.render('signup', { message: req.flash('signupMessage') });
+            res.render('authentication/signup', { message: req.flash('signupMessage') });
         }
     };
 
@@ -25,8 +25,8 @@ module.exports = function AuthenticationController (authenticationService){
     /* Authentications ========================================================*/
     this.auth = {
         local: {
-            login: function(callbackOptions){authenticationService.authenticate('local-login', callbackOptions);},
-            signup: function(callbackOptions) {return controller.authenticate('local-signup', callbackOptions)}
+            login: function(callbackOptions){return authenticationService.authenticate('local-login', callbackOptions);},
+            signup: function(callbackOptions) {return authenticationService.authenticate('local-signup', callbackOptions)}
         } ,
         facebook: {
             authenticate: authenticationService.authenticate('facebook', { scope : 'email' }),
