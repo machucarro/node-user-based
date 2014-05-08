@@ -1,11 +1,11 @@
 module.exports = {
-    home : {
-        'get': function (req, res) {
+
+/*=== GET Pages ==================================================*/
+    get : {
+        'home': function (req, res) {
             res.render("public_domain/index");
-        }
-    },
-    ping: {
-        'get': function (req, res) {
+        },
+        'ping': function (req, res) {
             res.end("pong!");
         }
     }
