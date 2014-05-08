@@ -24,11 +24,11 @@ module.exports = function (app, authenticationService) {
     app.get('/auth/logout', controller.logout({redirectUrl: '/'}));
 
     /* == Oauth Facebook ===============================================*/
-    app.get('/auth/facebook', controller.auth.facebook);
+    app.get('/auth/facebook', controller.auth.facebook.authenticate);
     app.get('/auth/facebook/callback', controller.auth.facebook.callback({ successRedirect : '/profile', failureRedirect: '/' }));
 
     /* == Oauth Twitter ===============================================*/
-    app.get('/auth/twitter', controller.auth.twitter);
+    app.get('/auth/twitter', controller.auth.twitter.authenticate);
     app.get('/auth/twitter/callback', controller.auth.twitter.callback({ successRedirect : '/profile', failureRedirect: '/' }));
 
     /* == Oauth gitHub ===============================================*/
@@ -36,7 +36,7 @@ module.exports = function (app, authenticationService) {
     app.get('/auth/github/callback', controller.auth.github.callback({ successRedirect : '/profile', failureRedirect: '/' }));
 
     /* == Oauth Google ===============================================*/
-    app.get('/auth/google', controller.auth.google);
+    app.get('/auth/google', controller.auth.google.authenticate);
     app.get('/auth/google/callback', controller.auth.google.callback({ successRedirect : '/profile', failureRedirect: '/' }));
 
 }

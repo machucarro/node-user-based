@@ -26,7 +26,7 @@ module.exports = function AuthenticationController (authenticationService){
     this.auth = {
         local: {
             login: function(callbackOptions){authenticationService.authenticate('local-login', callbackOptions);},
-            signup: function(callbackOptions) {return controller.authenticate('local-signup', callbackOptions)},
+            signup: function(callbackOptions) {return controller.authenticate('local-signup', callbackOptions)}
         } ,
         facebook: {
             authenticate: authenticationService.authenticate('facebook', { scope : 'email' }),
