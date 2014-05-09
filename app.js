@@ -19,10 +19,6 @@ var User = require('./app/user_domain/User.js');
 // Connect the database
 mongoose.connect(config.db.url);
 
-// Configure Passport ==================================================================
-passportConfig.init(passport);
-
-
 // Build the server with Express
 var app = express();
 
@@ -47,6 +43,7 @@ app.configure(function () {
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(flash());                       // use connect-flash for flash messages stored in session
+    this.use(app.router);
 });
 
 // Extra config for the view engine =====================================================

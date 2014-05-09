@@ -4,14 +4,20 @@
 
     <div class="jumbotron text-center">
         <h1><span class="fa fa-lock"></span> Node Authentication</h1>
-
-        <p>Login or Register with:</p>
-
-        <a href="/auth/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/auth/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-        <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-        <a href="/auth/github" class="btn btn-warning"><span class="fa fa-github"></span> github</a>
-        <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-        <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google+</a>
+        <div id="login-box"></div>
     </div>
 {% endblock content %}
+{% block scripts %}
+    <script src="https://cdn.auth0.com/w2/auth0-widget-3.0.min.js"></script>
+    <script>
+
+        var widget = new Auth0Widget({
+            domain:         'app16816799.auth0.com',
+            clientID:       's5w0wmUG5vz0knSatOCA1JG17qbPeF8J',
+            callbackURL:    'http://127.0.0.1:8080/authentication/callback'
+        });
+
+
+        widget.signin({ container: 'login-box', chrome: true, scope: 'openid profile' });
+    </script>
+{% endblock %}

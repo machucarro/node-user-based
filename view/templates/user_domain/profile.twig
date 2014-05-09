@@ -15,15 +15,43 @@
                 <h3><span class="fa fa-user"></span> Local</h3>
 
                 <p>
-                    <strong>id</strong>: {{user._id}}<br>
-                    <strong>email</strong>: {{user.local.email}}<br>
-                    <strong>password</strong>: {{user.local.password}}
+                    <strong>id</strong>: {{user.user_id}}<br>
+                    <strong>email</strong>: {{user.email}}<br>
+                    <strong>username</strong>: {{user.nickname}}
+                    <strong>picture</strong>: {{user.picture}}
+                    <strong>given name</strong>: {{user.given_name}}
+                    <strong>family name</strong>: {{user.family_name}}
                 </p>
 
             </div>
         </div>
 
+
         <!-- GOOGLE INFORMATION -->
+        {% for identity in user.identities %}
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3 class="text-danger">{{ identity.provider }}</h3>
+
+                    <!-- check if the user has this token (is the user authenticated with this social account) -->
+                    {% if user.google.token %}
+                        <p>
+                            <strong>id</strong>: {{ identity.user_id }}<br>
+                            <strong>token</strong>: {{ identity.access_token }}<br>
+                            <strong>email</strong>: {{ user.google.email }}<br>
+                            <strong>name</strong>: {{ user.google.name}}
+                        </p>
+
+                        <a onclick="$.post('https://app16816799.auth0.com/unlink?',
+                        {
+                         clientID: "{{ user.clientID }}",
+                         access_token: "{{ indentity.access_token }}",
+                         user_id: "{{ identity.provider }}|{{ identity.user_id }}"
+                        }).done(function(){location.reload();})" class="btn
+                        btn-danger">Unlink</a>
+                </div>
+            </div>
+        {% endfor %}
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
