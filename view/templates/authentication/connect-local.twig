@@ -1,15 +1,6 @@
-<!doctype html>
-<html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body 		{ padding-top:80px; }
-    </style>
-</head>
-<body>
-<div class="container">
+{% extends "base" %}
+{% block title %}Connect{% endblock title %}
+{% block content %}
     <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-3 col-sm-offset-3">
 
         <h1><span class="fa fa-user"></span> Add Local Account</h1>
@@ -37,6 +28,4 @@
         <p><a href="/profile">Go back to profile</a></p>
 
     </div>
-</div>
-</body>
-</html>
+{% endblock content %}

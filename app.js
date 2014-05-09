@@ -39,8 +39,8 @@ app.configure(function () {
     app.use(express.bodyParser());          // read html forms
     app.use(express.methodOverride());      //For easily handling and redirecting PUT and DELETE requests [Optional]
 
-    app.engine('html', cons.swig);          // Assign the swig engine to render html files
-    app.set('view engine', 'html');         // Set the html format as default view file format for render calls
+    app.engine('twig', cons.swig);          // Assign the swig engine to render html files
+    app.set('view engine', 'twig');         // Set the html format as default view file format for render calls
     app.set('views', __dirname + '/view/templates'); // Set the folder where the app should search for the views
     app.set('view options', {
         layout: false
