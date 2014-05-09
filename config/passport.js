@@ -5,11 +5,11 @@ var GoogleStrategy = require('passport-google-oauth').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var config = require('./index');
 var User = require('./../app/user_domain/User');
-var localAuthHandler = require('./../app/authentication/localAuthHandler');
-var facebookOauthTokenHandler = require('./../app/authentication/facebookOauthTokenHandler');
-var githubOauthTokenHandler = require('./../app/authentication/githubOauthTokenHandler');
-var googleOauthTokenHandler = require('./../app/authentication/googleOauthTokenHandler');
-var twitterOauthTokenHandler = require('./../app/authentication/twitterOauthTokenHandler');
+var localAuthHandler = require('./../app/authentication/LocalAuthHandler');
+var facebookOauthTokenHandler = require('./../app/authentication/FacebookOauthTokenHandler');
+var githubOauthTokenHandler = require('./../app/authentication/GithubOauthTokenHandler');
+var googleOauthTokenHandler = require('./../app/authentication/GoogleOauthTokenHandler');
+var twitterOauthTokenHandler = require('./../app/authentication/TwitterOauthTokenHandler');
 
 module.exports.init = function (passport) {
 
@@ -38,11 +38,11 @@ module.exports.init = function (passport) {
 
 
     // Signup strategy: Local ===========================================================
-    var localSignupStrategy = new LocalStrategy(config.auth.local, localAuthHandler.handleSignup);
+    var localSignupStrategy = new LocalStrategy(config.auth.local, LocalAuthHandler.handleSignup);
     passport.use('local-signup', localSignupStrategy);
 
     // Login strategy: local =============================================================
-    var localLoginStrategy = new LocalStrategy(config.auth.local, localAuthHandler.handleLogin);
+    var localLoginStrategy = new LocalStrategy(config.auth.local, LocalAuthHandler.handleLogin);
     passport.use('local-login', localLoginStrategy);
 
     // Oauth strategy: Facebook =========================================================
