@@ -1,4 +1,5 @@
 // Node module dependencies ============================================================
+require('newrelic');
 var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -16,12 +17,7 @@ var User = require('./app/user_domain/User.js');
 // Initialise the server and connections ===============================================
 
 // Connect the database
-var dbUrl = config.db.protocol + "://" + config.db.user
-        + (config.db.password.length != 0 ? (":" + config.db.password) : "")
-        + "@" + config.db.host
-        + ":" + config.db.port
-        + "/" + config.db.database;
-mongoose.connect(dbUrl);
+mongoose.connect(config.db.url);
 
 // Configure Passport ==================================================================
 passportConfig.init(passport);
