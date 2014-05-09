@@ -38,11 +38,11 @@ module.exports.init = function (passport) {
 
 
     // Signup strategy: Local ===========================================================
-    var localSignupStrategy = new LocalStrategy(config.auth.local, LocalAuthHandler.handleSignup);
+    var localSignupStrategy = new LocalStrategy(config.auth.local, localAuthHandler.handleSignup);
     passport.use('local-signup', localSignupStrategy);
 
     // Login strategy: local =============================================================
-    var localLoginStrategy = new LocalStrategy(config.auth.local, LocalAuthHandler.handleLogin);
+    var localLoginStrategy = new LocalStrategy(config.auth.local, localAuthHandler.handleLogin);
     passport.use('local-login', localLoginStrategy);
 
     // Oauth strategy: Facebook =========================================================
