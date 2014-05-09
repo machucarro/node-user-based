@@ -1,1 +1,1 @@
-web: node --debug=5858 app.js
+web: node --debug-brk=5858 app.js
