@@ -1,4 +1,4 @@
-var UserDomainController = require("./userDomainController");
+var UserDomainController = require("./UserDomainController");
 
 module.exports = function (app, authenticationService){
     var controller = new UserDomainController();
