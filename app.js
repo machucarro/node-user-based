@@ -1,7 +1,7 @@
 // Node module dependencies ============================================================
 require('newrelic');
 var express = require('express');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var passport = require('passport');
 var cons = require('consolidate');
 var swig = require('swig');
@@ -9,15 +9,14 @@ var flash = require('connect-flash');
 
 // App dependencies ====================================================================
 var config = require('./config');
-var passportConfig = require('./config/passport');
+var passportStrategy = require('./config/passport');
 var routes = require('./routes');
-var User = require('./app/user_domain/User.js');
 
 
 // Initialise the server and connections ===============================================
 
 // Connect the database
-mongoose.connect(config.db.url);
+//mongoose.connect(config.db.url);
 
 // Build the server with Express
 var app = express();
