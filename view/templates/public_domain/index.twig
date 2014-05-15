@@ -7,7 +7,7 @@
         <div id="login-box"></div>
     </div>
     <div class="row">
-        <div id="login-box" class="col-md-8 col-xs-12"></div>
+        <div id="login-box" class="col-md-8 col-xs-12">Login</div>
     </div>
 {% endblock content %}
 {% block scripts %}
@@ -19,6 +19,8 @@
             clientID:       's5w0wmUG5vz0knSatOCA1JG17qbPeF8J',
             callbackURL:    'http://machucarro-node-dev.herokuapp.com/authentication/callback'
         });
+
+        widget.signin({ container: 'login-box', chrome: true, scope: 'openid profile' });
 
     </script>
 {% endblock %}
