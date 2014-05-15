@@ -12,9 +12,9 @@
     <script>
 
         var widget = new Auth0Widget({
-            domain:         'app16816799.auth0.com',
-            clientID:       's5w0wmUG5vz0knSatOCA1JG17qbPeF8J',
-            callbackURL:    'http://127.0.0.1:8080/authentication/callback'
+            domain:         '{{ authConfig.domain }}',
+            clientID:       '{{ authConfig.clientID }}',
+            callbackURL:   '{{ authConfig.callbackURL }}'
         });
 
 

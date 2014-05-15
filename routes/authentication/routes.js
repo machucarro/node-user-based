@@ -8,7 +8,4 @@ module.exports = function (app, authenticationService) {
                 }
                 res.redirect("/");
             });
-    app.get('/authentication/unlink', function(req,res){
-        http.post()
-    })
 };

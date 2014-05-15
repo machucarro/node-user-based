@@ -21,29 +21,5 @@ module.exports = function AuthenticationController (authenticationService){
             res.redirect(redirectOptions.redirectUrl || '/');
         };
     };
-
-    /* Authentications ========================================================*/
-    this.auth = {
-        local: {
-            login: function(callbackOptions){return authenticationService.authenticate('local-login', callbackOptions);},
-            signup: function(callbackOptions) {return authenticationService.authenticate('local-signup', callbackOptions)}
-        } ,
-        facebook: {
-            authenticate: authenticationService.authenticate('facebook', { scope : 'email' }),
-            callback: function (callbackOptions) {return authenticationService.authenticate('facebook', callbackOptions);}
-        },
-        github: {
-            authenticate: authenticationService.authenticate('github'),
-            callback: function (callbackOptions) {return authenticationService.authenticate('github', callbackOptions);}
-        },
-        twitter: {
-            authenticate: authenticationService.authenticate('twitter'),
-            callback: function (callbackOptions) {return authenticationService.authenticate('twitter', callbackOptions);}
-        },
-        google: {
-            authenticate: authenticationService.authenticate('google', { scope : ['profile', 'email'] }),
-            callback: function (callbackOptions) {return authenticationService.authenticate('google', callbackOptions);}
-        }
-    };
 };
 

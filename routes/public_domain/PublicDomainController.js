@@ -1,3 +1,4 @@
+var authConfig = require("./../../config/auth");
 module.exports = function PublicDomainController(){
 
     if(!(this instanceof PublicDomainController)){
@@ -7,7 +8,7 @@ module.exports = function PublicDomainController(){
 /*=== GET Pages ==================================================*/
     this.get = {
         'home': function (req, res) {
-            res.render("public_domain/index");
+            res.render("public_domain/index",authConfig);
         },
         'ping': function (req, res) {
             res.end("pong!");
